@@ -5,6 +5,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from yaml import serialize
 from .models import *
 import api.serializers as api_ser
 from rest_framework import status
@@ -136,3 +137,9 @@ class PersonSearch(APIView):
         serializer = api_ser.PersonSerializer(persons, many=True, context = {'request':request})
         return Response({'data':serializer.data}, status=status.HTTP_200_OK)
             
+class GetPersonByCategory(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, id, format=None):
+        persons = Person.objects.filter(category=id)
+        serializer = api_ser.PersonSerializer(persons, many=True, context={'request':request})
+        return Response({'data':serializer.data}, status=status.HTTP_200_OK)

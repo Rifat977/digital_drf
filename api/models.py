@@ -31,4 +31,5 @@ class Person(models.Model):
     number = models.CharField(max_length=16, blank=False, null=False)
     rank = models.CharField(max_length=75, blank=False, null=False)
     address = models.CharField(max_length=255, blank=False, null=False)
+    image_url = models.ImageField(upload_to=upload_to, blank=True, null=True)
     

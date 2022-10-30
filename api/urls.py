@@ -10,4 +10,6 @@ urlpatterns = [
     path('person/', api_view.PersonList.as_view()),
     path('person/<int:pk>', api_view.PersonDetail.as_view()),
     path('person/search/', api_view.PersonSearch.as_view()),
+
+    path('category/person/<int:id>/', api_view.GetPersonByCategory.as_view()),
 ]
