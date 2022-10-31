@@ -12,4 +12,5 @@ urlpatterns = [
     path('person/search/', api_view.PersonSearch.as_view()),
 
     path('category/person/<int:id>/', api_view.GetPersonByCategory.as_view()),
+    path('<int:cat_id>/<int:sub_id>/<int:per_id>/', api_view.PersonDetailWithSubCat.as_view()),
 ]
