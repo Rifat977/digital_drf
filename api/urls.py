@@ -13,4 +13,5 @@ urlpatterns = [
 
     path('category/person/<int:id>/', api_view.GetPersonByCategory.as_view()),
     path('<int:cat_id>/<int:sub_id>/<int:per_id>/', api_view.PersonDetailWithSubCat.as_view()),
+    path('category/<int:cat_id>/subcategory/<int:sub_id>/', api_view.PersonBySubCategory.as_view()),
 ]

@@ -150,3 +150,10 @@ class PersonDetailWithSubCat(APIView):
         persons = Person.objects.filter(id=per_id)
         serializer = api_ser.PersonSerializer(persons, many=True, context={'request':request})
         return Response({'data':serializer.data}, status=status.HTTP_200_OK)
+
+class PersonBySubCategory(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, cat_id, sub_id, format=None):
+        persons = Person.objects.filter(sub_category=sub_id, category=cat_id)
+        serializer = api_ser.PersonSerializer(persons, many=True, context={'request':request})
+        return Response({'data':serializer.data}, status=status.HTTP_200_OK)
