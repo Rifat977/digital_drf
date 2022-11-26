@@ -74,8 +74,8 @@ class SubcategoryDetail(APIView):
     
     def get(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = api_ser.SubategorySerializer(snippet)
-        return Response(serializer.data)
+        serializer = api_ser.SubategorySerializer(snippet, many=False, context={'request':request})
+        return Response({'data':serializer.data}, status=status.HTTP_200_OK)
 
     def put(self, request, pk, format=None):
         snippet = self.get_object(pk)
